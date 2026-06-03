@@ -1,0 +1,19 @@
+name: 01-issue-triage
+on:
+  issues:
+    types: [opened, edited]
+permissions:
+  issues: write
+  id-token: write
+  contents: read
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Processa título da issue
+        run: |
+          echo "Título recebido: ${{ github.event.issue.title }}"
+          echo "Body recebido: ${{ github.event.issue.body }}"
+      - name: Simula uso de OIDC
+        run: |
+          echo "OIDC request URL existe: $ACTIONS_ID_TOKEN_REQUEST_URL"
